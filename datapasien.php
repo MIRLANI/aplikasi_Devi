@@ -1,3 +1,12 @@
+<?php
+
+include 'config.php';
+
+$query = "SELECT * FROM pasien";
+$sql = mysqli_query($koneksi, $query);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -75,31 +84,21 @@
         <th>Jenis Kelamin</th>
         <th>Aksi</th>
     </tr>
+    <?php while ($pasien  = mysqli_fetch_assoc($sql)) { ?>
     <tr>
         <td>1</td>
-        <td>Cho Samdal </td>
-        <td>20</td>
-        <td>165 </td>
-        <td>40  </td>
-        <td>Perempuan </td>
+        <td><?php echo $pasien['nama']; ?></td>
+        <td><?php echo $pasien['usia']; ?></td>
+        <td><?php echo $pasien['tinggi_badan']; ?></td>
+        <td><?php echo $pasien['berat_badan']; ?></td>
+        <td><?php echo $pasien['jenis_kelamin']; ?></td>
         <td>
             <button onclick="editData(1)">Edit</button>
             <button onclick="hapusData(1)">Hapus</button>
         </td>
     </tr>
-    <tr>
-        <td>2</td>
-        <td>Cho Young Pil </td>
-        <td>20</td>
-        <td> 170</td>
-        <td>60</td>
-        <td> Laki-laki</td>
-        <td>
-            <button onclick="editData(1)">Edit</button>
-            <button onclick="hapusData(1)">Hapus</button>
-        </td>
-    </tr>
-    <!-- Tambahkan baris data pasien lainnya sesuai kebutuhan -->
+<?php } ?>
+ 
 </table>
 
 <script>

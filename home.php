@@ -33,7 +33,7 @@
                 <a href="home.php">Home</a>
             </li>
             <li>
-                <a href="datapasien.html">Patient Data</a>
+                <a href="datapasien.php">Patient Data</a>
             </li>
             <li>
                 <a href="datapasien.html"> Food Data </a>
