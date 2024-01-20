@@ -1,0 +1,25 @@
+@startuml
+
+
+
+class Makanan{
+    Kode_makanan varchar (200) <<PR>>
+    Kode_Pertanyaan varchar (200) <<FK>>
+    Kode_sulusi varchar (200) <<FK>>
+}
+
+
+class Pertanya {
+    kode_pertanyaan varchar(200) <<PR>>
+    Jenis_pertanyaan varchar(200)
+}
+
+class Pasies{
+    kode_pasien varchar (200) <<PR>>
+    Nama varchar (200) 
+    Usia date()
+    jenis_kelamin 
+}
+
+
+@enduml

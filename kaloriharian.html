@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kalori Harian</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        body 
+        {
+            font-family: 'Arial', sans-serif;
+            background-color: cadetblue;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: azure;
+            color: grey;
+            text-align: center;
+            padding: 1em;
+        }
+        section {
+            max-width: 600px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        input {
+            width: 100%;
+            padding: 0.5em;
+            margin-bottom: 1em;
+        }
+        button {
+            background-color: rgba(114, 169, 151, 0.923);
+            color: #fff;
+            padding: 0.5em 1em;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #555;
+        }
+        #result {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="">
+            <img src="icons.png" alt="icons" />
+           
+        </div> 
+        <div id="menu-icon" class="menu-icon"> 
+         <i class="ph ph-list"></i>
+        </div>
+        <ul id="menu-list" class="hidden">
+            <li>
+                <a href="home.php">Home</a>
+            </li>
+            <li>
+                <a href="datapasien.html">Patient Data</a>
+            </li>
+            <li>
+                <a href="datamakanan.php">Food Data</a>
+            </li>
+            <li>
+                <a href="kaloriharian.html">Calorie Count</a>
+            </li>
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+       
+    </nav>
+    <header>
+        <h1>Kalkulator Kalori Harian</h1>
+    </header>
+
+    <section>
+        <label for="weight">Berat Badan (kg):</label>
+        <input type="number" id="weight" placeholder="Masukkan berat badan">
+
+        <label for="height">Tinggi Badan (cm):</label>
+        <input type="number" id="height" placeholder="Masukkan tinggi badan">
+
+        <label for="age">Usia (tahun):</label>
+        <input type="number" id="age" placeholder="Masukkan usia">
+
+        <label for="gender">Jenis Kelamin:</label>
+        <select id="gender">
+            <option value="male">Laki-laki</option>
+            <option value="female">Perempuan</option>
+        </select>
+
+        <button onclick="calculateCalories()">Hitung Kalori</button>
+
+        <div id="result"></div>
+    </section>
+
+    <script>
+        function calculateCalories() {
+            var weight = document.getElementById('weight').value;
+            var height = document.getElementById('height').value;
+            var age = document.getElementById('age').value;
+            var gender = document.getElementById('gender').value;
+
+            // Formula perhitungan kalori bisa disesuaikan sesuai kebutuhan
+            var calories = 0;
+
+            // Menampilkan hasil perhitungan
+            document.getElementById('result').innerHTML = 'Kalori Harian Anda: ' + calories + ' kkal';
+        }
+    </script>
+
+</body>
+</html>

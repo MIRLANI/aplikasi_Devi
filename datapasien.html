@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pasien </title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+        header {
+            background-color: azure;
+            color: grey;
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0%;
+        }
+
+        table {
+            border: 3px solid whitesmoke ;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddddddd6;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: aliceblue;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <div class="">
+            <img src="icons.png" alt="icons" />
+           
+        </div> 
+        <div id="menu-icon" class="menu-icon"> 
+         <i class="ph ph-list"></i>
+        </div>
+        <ul id="menu-list" class="hidden">
+            <li>
+                <a href="home.php">Home</a>
+            </li>
+            <li>
+                <a href="datapasien.html">Patient Data</a>
+            </li>
+            <li>
+                <a href="datapasien.html"> Food Data </a>
+            </li>
+            <li>
+                <a href="kaloriharian.html">Calorie Count</a>
+            </li>
+            <li>
+                <a href="#">Logout</a>
+            </li>
+        </ul>
+       
+        </nav>
+
+        <header>
+            <h1> Data Pasien </h1>
+        </header>
+        
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Umur</th>
+        <th>Tinggi Badan (cm)</th>
+        <th>Berat Badan (kg)</th>
+        <th>Jenis Kelamin</th>
+        <th>Aksi</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Cho Samdal </td>
+        <td>20</td>
+        <td>165 </td>
+        <td>40  </td>
+        <td>Perempuan </td>
+        <td>
+            <button onclick="editData(1)">Edit</button>
+            <button onclick="hapusData(1)">Hapus</button>
+        </td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Cho Young Pil </td>
+        <td>20</td>
+        <td> 170</td>
+        <td>60</td>
+        <td> Laki-laki</td>
+        <td>
+            <button onclick="editData(1)">Edit</button>
+            <button onclick="hapusData(1)">Hapus</button>
+        </td>
+    </tr>
+    <!-- Tambahkan baris data pasien lainnya sesuai kebutuhan -->
+</table>
+
+<script>
+    function editData(id) {
+        // Implementasikan logika edit data sesuai kebutuhan
+        alert("Anda akan mengedit data pasien dengan ID " + id);
+    }
+
+    function hapusData(id) {
+        // Implementasikan logika hapus data sesuai kebutuhan
+        alert("Anda akan menghapus data pasien dengan ID " + id);
+    }
+</script>
+
+</body>
+</html>
