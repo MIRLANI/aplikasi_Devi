@@ -1,10 +1,50 @@
-<?php 
+<?php
+session_start();
+
+if (isset($_SESSION['user_id'])) {
+    header("Location: home.php");
+    exit;
+}
 
 
+require_once __DIR__ . "/database/conection.php";
+
+$conn = connection();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Lindungi dari serangan SQL injection
+    $username = stripslashes($username);
+    $password = stripslashes($password);
+    $username = $conn->real_escape_string($username);
+
+    // Query ke database untuk mendapatkan informasi pengguna
+    $query = "SELECT * FROM admin WHERE username='$username'";
+    $result = $conn->query($query);
 
 
-
-
+    
+    if ($result->num_rows == 1) {
+        $row = $result->fetch_assoc();
+        // Verifikasi password menggunakan password_verify()
+        
+        if (password_verify($password, $row['password'])) {
+            // Password cocok, atur session dan arahkan ke halaman home
+            $_SESSION['user_id'] = $row['username'];
+            header("Location: home.php");
+            exit;
+        } else {
+            // Password tidak cocok, tampilkan pesan error
+            $error_message = "Username atau password salah.";
+        }
+    } else {
+        // Pengguna tidak ditemukan, tampilkan pesan error
+        $error_message = "Username atau password salah.";
+    }
+}
+$conn->close();
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +63,7 @@
 
     <link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-in.html" />
 
-    <title>Sign In | AdminKit Demo</title>
+    <title>Login | Admin</title>
 
     <link href="assets/css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
@@ -36,41 +76,27 @@
                 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
                     <div class="d-table-cell align-middle">
 
-                        <div class="text-center mt-4">
-                            <h1 class="h2">Welcome back, Charles</h1>
-                            <p class="lead">
-                                Sign in to your account to continue
-                            </p>
-                        </div>
-
                         <div class="card">
                             <div class="card-body">
                                 <div class="m-sm-4">
-                                    <div class="text-center">
-                                        <img src="img/avatars/avatar.jpg" alt="Charles Hall" class="img-fluid rounded-circle" width="132" height="132" />
-                                    </div>
-                                    <form>
+                                    <?php if (isset($error_message)) : ?>
+                                        <p style="color: red;"><?php echo $error_message; ?></p>
+                                    <?php endif; ?>
+                                    <form method="POST" action="">
                                         <div class="mb-3">
-                                            <label class="form-label">Email</label>
-                                            <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+                                            <label class="form-label">Username:</label>
+                                            <input class="form-control form-control-lg" type="text" name="username" placeholder="Enter your username  " />
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Password</label>
+                                            <label class="form-label">Password:</label>
                                             <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter your password" />
-                                            <small>
-                                                <a href="index.html">Forgot password?</a>
-                                            </small>
+
                                         </div>
                                         <div>
-                                            <label class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="remember-me" name="remember-me" checked>
-                                                <span class="form-check-label">
-                                                    Remember me next time
-                                                </span>
-                                            </label>
+
                                         </div>
                                         <div class="text-center mt-3">
-                                            <a href="index.html" class="btn btn-lg btn-primary">Sign in</a>
+                                            <button type="submit" class="btn btn-lg btn-primary">Login</button>
                                         </div>
                                     </form>
                                 </div>
